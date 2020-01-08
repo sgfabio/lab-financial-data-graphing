@@ -14,40 +14,38 @@ function getBitCoinPrices() {
 
 getBitCoinPrices()
 
-funtion printChart(stockData) {
-    const days = Object.keys(stockData);              // Eixo X
-    const closingPrices  = Object.values(stockData);  // Eixo Y
+function printChart(stockData) {
+    const days = Object.keys(stockData);              // Pega valores do Eixo X
+    const closingPrices  = Object.values(stockData);  // Pega valores do Eixo Y
 
+    let ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: days,
+            datasets: [{
+                label: 'Closing quotes',
+                data: closingPrices,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 
 
 }
 
-
-
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: dailyData,
-        datasets: [{
-            label: 'Closing quotes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-            ],
-            borderColor: [
-                'rgba(54, 162, 235, 1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
